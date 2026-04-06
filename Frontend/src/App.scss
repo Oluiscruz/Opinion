@@ -1,0 +1,52 @@
+:root {
+    --primary-color: #009e17;
+    --color-2: #7dff0b;
+    --color-3: #3103b7;
+    --red: #c61010;
+    --txt-color-1: #fff;
+    --txt-color-2: #bbbbbb;
+    --border-color: #f6f6f6;
+    --shadow: #e1e1e13f;
+    --bg: #000000;
+    --bg-white: #ffffff;
+    --font-1: "Open Sans", sans-serif;
+    --font-2: "Aoboshi One", sans-serif;
+    --font-3: "Jura", sans-serif;
+}
+
+.container{
+    min-height: 100dvh;
+    
+    .modal-overlay{
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.397);
+        backdrop-filter: blur(4px); /* Efeito de vidro */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+
+        .content-modal-error{
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+            .error{
+                color: var(--red);
+            }
+
+            .success{
+                color: var(--primary-color);
+            }
+        }
+
+    }
+
+}

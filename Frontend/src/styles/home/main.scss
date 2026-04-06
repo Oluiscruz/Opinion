@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Jura:wght@300..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&family=Voces&display=swap");
+
+:root {
+    --primary-color: #009e17;
+    --color-2: #7dff0b;
+    --color-3: #3103b7;
+    --txt-color-1: #fff;
+    --txt-color-2: #bbbbbb;
+    --border-color: #f6f6f6;
+    --shadow: #e1e1e13f;
+    --bg: #000000;
+    --font-1: "Open Sans", sans-serif;
+    --font-2: "Aoboshi One", sans-serif;
+    --font-3: "Jura", sans-serif;
+    --font-4: "Open Sans", sans-serif;
+}
+
+.container {
+    .content-main {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+
+        .title-main {
+            margin: 35px;
+            line-height: 0.8;
+            /* aproxima as linhas */
+
+            h1 {
+                font-family: var(--font-2);
+                color: var(--txt-color-1);
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                font-size: 4rem;
+
+                span {
+                    font-family: var(--font-3);
+                    color: var(--primary-color);
+                    font-size: 3.5rem;
+                }
+            }
+        }
+
+        .content-main-search {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+
+            .search-input-wrapper {
+                position: relative;
+                width: 100%;
+                max-width: 250px;
+
+                .search-icon {
+                    position: absolute;
+                    left: 30px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #6b7280;
+                    pointer-events: none;
+                }
+
+                input {
+                    padding: 0.6rem 0.9rem;
+                    padding-left: 2.6rem;
+                    border-radius: 16px;
+                    font-family: var(--font-1), sans-serif;
+                }
+            }
+
+            .btn-search {
+                width: 100%;
+
+                button {
+                    width: 100%;
+                    max-width: 220px;
+                    border: none;
+                    outline: none;
+                    background: linear-gradient(55deg, #009e17, #7dff0b);
+                    font-family: var(--font-2);
+                    text-transform: uppercase;
+                    box-shadow: 0 7px 20px var(--shadow);
+                    padding: 10px 12px;
+                    border-radius: 14px;
+                    cursor: pointer;
+                    transition: all 0.25s ease-in-out;
+
+                    &:hover {
+                        transform: scale(0.97);
+                    }
+                }
+            }
+        }
+
+        .content-main-info {
+            display: grid;
+            place-items: center;
+            height: 25vh;
+
+
+            p {
+                max-width: 460px;
+                font-weight: 300;
+                font-family: var(--font-3);
+                color: var(--txt-color-2);
+                font-size: 1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,109 @@
+:root {
+    --primary-color: #009e17;
+    --color-2: #7dff0b;
+    --color-3: #3103b7;
+    --txt-color-1: #fff;
+    --txt-color-2: #bbbbbb;
+    --border-color: #f6f6f6;
+    --shadow: #e1e1e13f;
+    --bg: #000000;
+    --bg-white: #ffffff;
+    --font-1: "Open Sans", sans-serif;
+    --font-2: "Aoboshi One", sans-serif;
+    --font-3: "Jura", sans-serif;
+}
+
+.container {
+
+    .content-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 20px;
+        width: 100%;
+        max-width: 300px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        padding: 8px 20px;
+        border-radius: 25px;
+        /* vidro translúcido */
+        background: rgba(255,255,255,0.04);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.12);
+        box-sizing: border-box;
+
+        .menu-item{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            li{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2px;
+                list-style: none;
+                cursor: pointer;
+                transition: all 0.25s ease-in-out;
+                
+                &:hover {
+                    transform: scale(0.97);
+                }
+                
+                a{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 3px 16px;
+                    color: var(--txt-color-1);
+                    transition: all 0.25s;
+                    border-radius: 25px;
+
+                    svg{
+                        display: block;
+                        transition: all 0.25s ease-in-out;
+                    }
+
+                    &:hover svg{
+                        color: var(--color-2);
+                    }
+
+                    /* estado ativo quando a rota corresponder */
+                    &.active{
+                        color: var(--color-2);
+                    }
+
+                    &.active svg{
+                        transform: scale(1.06);                        
+                    }
+                }
+                
+                .bar{
+                    width: 15px;
+                    height: 2px;
+                    background: var(--color-2);
+                    box-shadow: 0 0 18px var(--color-2);
+                    /* escondido por padrão */
+                    opacity: 0;
+                    transform: scaleX(0.6);
+                    transform-origin: center;
+                    transition: opacity 0.18s ease, transform 0.18s ease;
+                    pointer-events: none;
+                }
+                /* mostrar somente quando o item estiver em hover e o link estiver ativo */
+                
+                a.active + .bar,
+                &:hover .bar {
+                    opacity: 1;
+                    transform: scaleX(1);
+                }
+            }
+                
+
+        }
+    }
+}
