@@ -2,51 +2,178 @@
     --primary-color: #009e17;
     --color-2: #7dff0b;
     --color-3: #3103b7;
-    --red: #c61010;
+    --color-4: #1dc26f;
     --txt-color-1: #fff;
     --txt-color-2: #bbbbbb;
     --border-color: #f6f6f6;
     --shadow: #e1e1e13f;
     --bg: #000000;
-    --bg-white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.04);
+    --glass-red: rgba(169, 12, 12, 0.449);
+    --glass-green: rgba(0, 158, 23, 0.449);
     --font-1: "Open Sans", sans-serif;
     --font-2: "Aoboshi One", sans-serif;
     --font-3: "Jura", sans-serif;
+    --font-4: "Open Sans", sans-serif;
+    --font-5: "Noto Sans", sans-serif;
 }
 
-.container{
+.container {
     min-height: 100dvh;
-    
-    .modal-overlay{
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+
+    @media (max-width: 1200px) {
+        width: 1000px;
+    }
+
+    @media (max-width: 1024px) {
+        width: 800px;
+    }
+
+    @media (max-width: 980px) {
+        width: 650px;
+    }
+    @media (max-width: 780px) {
+        width: 550px;
+    }
+    @media (max-width: 630px) {
+        width: 450px;
+    }
+    @media (max-width: 430px) {
+        width: 350px;
+    }
+
+    .modal-overlay {
         position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background-color: rgba(0, 0, 0, 0.397);
-        backdrop-filter: blur(4px); /* Efeito de vidro */
+        backdrop-filter: blur(4px);
+        /* Efeito de vidro */
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 1000;
-        animation: fadeIn 0.3s ease;
+        animation: overlayFadeIn 0.24s ease forwards;
 
-        .content-modal-error{
-            background: var(--bg-white);
+        &.is-closing {
+            animation: overlayFadeOut 0.24s ease forwards;
+
+            .content-modal-error,
+            .content-modal-success {
+                animation: modalFadeOut 0.24s ease forwards;
+            }
+        }
+
+        .content-modal-error,
+        .content-modal-success {
+            /* vidro translúcido */
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 16px;
             padding: 3rem 2rem;
             max-width: 450px;
             width: 90%;
             text-align: center;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
-            .error{
-                color: var(--red);
+            .error {
+                padding: 10px 12px;
+                border-radius: 8px;
+                border: 1px solid var(--border-glass);
+                background-color: var(--glass-red);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                color: var(--txt-color-1);
+                font-size: 1.1rem;
+                font-weight: 600;
+                font-family: var(--font-3), sans-serif;
             }
 
-            .success{
-                color: var(--primary-color);
+            .success {
+                padding: 10px 12px;
+                border-radius: 8px;
+                border: 1px solid var(--border-glass);
+                background-color: var(--color-4);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                color: var(--txt-color-1);
+                font-size: 1.1rem;
+                font-weight: 600;
+                font-family: var(--font-3), sans-serif;
             }
         }
-
     }
 
+    .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-top-color: var(--txt-color-1);
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: middle;
+        animation: spin 0.9s linear infinite;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes overlayFadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(14px) scale(0.97);
+    }
 }

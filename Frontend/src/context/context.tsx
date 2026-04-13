@@ -5,7 +5,6 @@
 
 import { createContext, useEffect, useState, useContext } from "react";
 import type { ReactNode } from "react";
-import { getApiBaseUrl } from "../services/apiBase";
 
 // Definindo a estrutura do contexto
 interface AuthContextData {
@@ -52,7 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }, []);
 
     async function Login(credentials: { email: string; password: string }) {
-        const apiBaseUrl = getApiBaseUrl();
+        const apiBaseUrl = import.meta.env.API_URL || 'http://localhost:8000';
         const body = new URLSearchParams({
             username: credentials.email,
             password: credentials.password,

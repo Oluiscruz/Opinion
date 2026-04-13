@@ -50,16 +50,17 @@
   }
 }
 
-#root {
+body {
   background: var(--bg);
-  width: 1200px;
-  max-width: 100%;
+  
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
+  // border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
+
+  
 }
 
 *{
@@ -103,7 +104,3 @@ input{
   padding: 10px 12px;
   background: transparent;
 }
-
-/* Importar estilos compartilhados do home para aplicar globalmente */
-@import './styles/home/main.scss';
-
