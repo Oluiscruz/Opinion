@@ -173,19 +173,20 @@
                     }
 
                     button {
+                        width: 100%;
                         display: flex;
                         align-items: center;
                         gap: 4px;
-                        width: 100%;
+                        padding: 0.55rem 0.9rem;
+                        border-radius: 8px;
                         border: none;
                         outline: none;
-                        background: linear-gradient(55deg, #009e17, #7dff0b);
-                        font-family: var(--font-2);
                         font-size: 12px;
+                        font-family: var(--font-2);
+                        color: var(--txt-color-1);
                         text-transform: uppercase;
-                        padding: 0.55rem 0.9rem;
-
-                        border-radius: 8px;
+                        background: linear-gradient(55deg, #009e17, #7dff0b);
+                        
                         cursor: pointer;
                         transition:
                             transform 0.3s ease-in-out,
