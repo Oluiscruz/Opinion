@@ -59,8 +59,8 @@ export default function Main() {
                     <h1>
                         OPYNION <span>Opy</span>
                     </h1>
-                    <img src={logo} alt="Logo" width={170}/>
-                    
+                    <img src={logo} alt="Logo" width={170} />
+
                 </div>
 
                 <div className="content-main-analysis">
@@ -96,13 +96,13 @@ export default function Main() {
                                 ) : (
                                     ""
                                 )}
-                                <Sparkle size={18}/>Research
+                                <Sparkle size={18} />Analisar
                             </button>
                         </div>
                     </div>
                     <div className="topics-of-search">
                         <div className="title-topics">
-                        <p>Tópicos rápidos:</p>
+                            <p>Tópicos rápidos:</p>
 
                         </div>
                         <li><button>Datacenters no Brasil</button></li>
@@ -113,8 +113,8 @@ export default function Main() {
 
                 <div className="content-main-info">
                     <p>
-                        Search for any topic and Opi will find out what people are feeling
-                        on social media about it.
+                        Pesquise qualquer tópico e o Opy coletará comentários nas redes sociais 
+                        e retornará o sentimento geral das pessoas sobre o tema.
                     </p>
                 </div>
             </div>
