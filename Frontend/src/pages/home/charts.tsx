@@ -50,7 +50,7 @@ export default function Charts({ results }: ChartsProps) {
                                     labelLine={true}
                                     dataKey="value"
                                 >
-                                    {chartData.map((entry, index) => (
+                                    {chartData.map((_entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="none" />
                                     ))}
                                 </Pie>

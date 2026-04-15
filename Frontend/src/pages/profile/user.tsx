@@ -2,7 +2,6 @@ import Bottom from "../home/bottom";
 import { UseAuth } from "../../context/context";
 
 import { useNavigate } from "react-router";
-import { span } from "motion/react-client";
 
 
 export default function User() {

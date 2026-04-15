@@ -91,6 +91,16 @@ export default function Main() {
                     </div>
                 </div>
             )}
+            {msgSuccess && (
+                <div className={"modal-overlay"} onClick={() => setMsgSuccess("")}>
+                    <div
+                        className="content-modal-success"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <p className="success">{msgSuccess}</p>
+                    </div>
+                </div>
+            )}
 
             <div className="content-main">
                 <div className="title-main">
