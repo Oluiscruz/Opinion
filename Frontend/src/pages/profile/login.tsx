@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import Bottom from "../home/bottom";
+import { UseAuth } from "../../context/context";
 import { LockKeyhole, Mail } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import '../../styles/profile/account.scss';
@@ -68,43 +69,22 @@ export default function Login() {
         }, 4000);
     };
 
+    const { Login } = UseAuth();
+
     const doLogin = async (User: User) => {
-        const apiBaseUrl = import.meta.env.API_URL || 'http://localhost:8000';
         setLoading(true);
 
         try {
-            const userData = { ...User };
-            const userDataParams = new URLSearchParams(userData as Record<string, string>);
-            userDataParams.append('username', email);
-            userDataParams.append('password', password);
-
-            const response = await fetch(`${apiBaseUrl}/auth/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: userDataParams.toString()
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to login. Please check your credentials and try again.');
-            }
-
-            const data = await response.json();
-
-            localStorage.setItem('access_token', data.access_token);
-
-            console.log("Login saved with success.");
+            await Login(User);
             setMsgSuccess('User logged in successfully!');
-            setTimeout(() => setMsgSuccess(''), 3000); // Apaga a mensagem de sucesso após 5 segundos
-            navigate("/profile");
-
+            navigate('/profile');
         } catch (error) {
-            console.error("Error to do login:", error);
+            console.error('Error to do login:', error);
             const message = error instanceof Error ? error.message : 'error to do login';
             showErrorModal(message);
-
-        } finally { setLoading(false); }
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

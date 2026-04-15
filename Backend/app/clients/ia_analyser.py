@@ -30,7 +30,7 @@ class OpiAnalyser:
 
         try:
             response = self.client.models.generate_content(
-                model="gemini-3-flash-preview",
+                model="gemini-2.5-flash",
                 contents=prompt,
                 config={
                     "system_instruction": "Você é um especialista em análise de sentimentos. Responda apenas com o array JSON.",

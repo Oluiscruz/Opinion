@@ -2,6 +2,7 @@ import Bottom from "../home/bottom";
 import { UseAuth } from "../../context/context";
 
 import { useNavigate } from "react-router";
+import { span } from "motion/react-client";
 
 
 export default function User() {
@@ -29,8 +30,8 @@ export default function User() {
                     <button onClick={LogoutUser}>Logout</button>
                 </div>
             ) : (
-                <p>Loading...</p>
-            )}
+                <span className="spinner">loading...</span>
+            ) }
 
         </div>
         

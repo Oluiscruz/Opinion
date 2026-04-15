@@ -1,6 +1,7 @@
 annotated-types==0.7.0
 anyio==4.13.0
 asgiref==3.9.1
+beanie==1.29.0
 bcrypt==4.0.1
 blinker==1.9.0
 certifi==2026.2.25
@@ -28,8 +29,9 @@ idna==3.11
 itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.2
+motor==3.7.1
 numpy==2.3.2
-packaging==26.0
+    packaging==26.0
 proto-plus==1.27.1
 protobuf==6.33.6
 psycopg2-binary==2.9.11

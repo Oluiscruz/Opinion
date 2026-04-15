@@ -4,7 +4,7 @@ class YoutubeExtractor:
     def __init__(self, api_key):
         self.youtube = build('youtube', 'v3', developerKey=api_key)
 
-    def search_videos(self, query, max_results=5):
+    def search_videos(self, query, max_results=3):
         #Procura vídeos no YouTube com base em uma string de busca.
         try:
             request = self.youtube.search().list(
@@ -31,7 +31,7 @@ class YoutubeExtractor:
             return []
 
     # Função de listar comentários
-    def get_comments(self ,video_id, max_results_per_page=100, max_pages=3):
+    def get_comments(self ,video_id, max_results_per_page=20, max_pages=1):
         """
         Extrai comentários de um vídeo específico com suporte a paginação.
         max_results_per_page= limite de API por requisiçãO (100).

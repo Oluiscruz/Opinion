@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }, []);
 
     async function Login(credentials: { email: string; password: string }) {
-        const apiBaseUrl = import.meta.env.API_URL || 'http://localhost:8000';
+        const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
         const body = new URLSearchParams({
             username: credentials.email,
             password: credentials.password,

@@ -1,54 +1,56 @@
+# model.py
 from enum import Enum
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime, timezone
-from sqlmodel import SQLModel, Field, Relationship, JSON, Column
+from pydantic import Field
+from beanie import Document, Indexed
 import uuid
 
-# class que define os tipos de plano
+# Classe dos tipos de planos de assinatura
 class PlanType(str, Enum):
     FREE = "free"
     BASIC = "basic"
     PREMIUM = "premium"
 
-# 1. Cria tabela de usuários
-class Users(SQLModel, table=True):
-    __tablename__ = 'users'
-    
-    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    name: str = Field(..., nullable=False)
-    nickname: str = Field(..., nullable=False, unique=True, index=True)
-    email: str = Field(..., index=True, nullable=False, unique=True)
-    password: str = Field(..., nullable=False)
-    plan_type: PlanType = Field(default=PlanType.FREE)
+# 1. Coleção de Usuários
+class Users(Document):
+    # O Beanie cria um _id automaticamente, mas podemos forçar o uso do UUID como você fez
+    id: uuid.UUID = Field(default_factory=uuid.uuid4)
+    name: str
+    nickname: Indexed(str, unique=True) # Indexed cria os índices no MongoDB
+    email: Indexed(str, unique=True)
+    password: str
+    plan_type: PlanType = PlanType.FREE
+    is_admin: bool = False
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    searches: List["SearchHistory"] = Relationship(back_populates="user")
 
-# 2. Cria a tabela de histórico de pesquisas
-class SearchHistory(SQLModel, table=True):
-    __tablename__ = 'search_history'
-    
-    id: Optional[int] = Field(default=None, primary_key=True)
-    query: str = Field(..., nullable=False)
+    class Settings:
+        name = "users" # Nome da collection no banco
+
+# 2. Coleção de Histórico de Pesquisas
+class SearchHistory(Document):
+    query: str
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    
-    user_id: uuid.UUID = Field(..., foreign_key="users.id", nullable=False)
-    user: Users = Relationship(back_populates="searches")
+    user_id: Optional[uuid.UUID] = None
+    ip: Optional[str] = None
+    video_id: Optional[str] = None
 
-# 4. tabela de comentários do youtube -> Única API até o momento que armazena os comentários e análises
-class YouTubeComments(SQLModel, table=True):
-    __tablename__ = 'youtube_comments'
-    
-    id: Optional[int] = Field(default=None, primary_key=True)
-    video_id: str = Field(..., max_length=50)
+    class Settings:
+        name = "search_history"
+
+# 3. Coleção de Comentários do YouTube
+class YouTubeComments(Document):
+    video_id: str
     video_title: Optional[str] = None
     channel: Optional[str] = None
     author: Optional[str] = None
-    comment: str = Field(..., nullable=False)
+    comment: str
     sentiment: Optional[str] = None
-    trust: Optional[float] = None
+    trust_value: Optional[float] = None
     reason: Optional[str] = None
-    
-    # Armazena o resultado em um JSONB do Postgresql via SQLModel
-    analysis_result: dict = Field(default={}, sa_column=Column(JSON))
+    analysis_result: dict = Field(default_factory=dict) # JSON nativo
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    
+
+    class Settings:
+        name = "youtube_comments"
+        
